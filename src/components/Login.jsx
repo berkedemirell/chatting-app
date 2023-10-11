@@ -1,0 +1,68 @@
+import { useContext, useState } from "react"
+import UserContext from "../context/UserContext.jsx"
+import { useNavigate } from "react-router-dom"
+
+
+const Login = () => {
+    const navigate = useNavigate()
+
+    const {setUser, allUsers} = useContext(UserContext)
+
+    const [userInputs, setUserInputs] = useState({
+        username: '',
+        password: '',
+    }) 
+
+    const [error, setError] = useState({
+        isError: false,
+        message: '',
+    })
+
+
+
+    const handleChange = (e) => {
+        e.preventDefault();
+        setUserInputs({...userInputs, [e.target.id]: e.target.value})
+    }
+
+    const selected = allUsers.filter(u => u.password === userInputs.password)
+
+    const handleLogin = (e) => {
+        e.preventDefault();
+        if(userInputs.password.length === 0 | userInputs.username.length === 0) {
+            setError({isError: true, message: 'Fill all inputs'})
+        } else if(selected[0]?.username !== userInputs.username | selected[0]?.password !== userInputs.password) {
+            setError({isError: true, message: 'wrong username or password'})
+        } else {
+            selected[0].isOnline = true
+            setUser(selected[0])
+            navigate('/messages')
+        }
+    }
+
+
+    
+
+
+  return (
+    <div className="w-screen h-screen flex items-center justify-center font-mono">
+        <form className="flex flex-col items-center gap-4 border border-slate-950 p-10 rounded-md bg-slate-950 text-slate-50 relative">
+            <div className="flex flex-col">
+                <label className="text-xs uppercase pl-1">username:</label>
+                <input id="username" type="text" placeholder="username" className="bg-slate-300 p-1 rounded-md text-slate-950" onChange={handleChange} required/>
+            </div>
+            <div className="flex flex-col">
+                <label className="text-xs uppercase pl-1">password:</label>
+                <input id="password" type="password" placeholder="password" className="bg-slate-300 p-1 rounded-md text-slate-950" onChange={handleChange} required/>
+            </div>
+            <div className="absolute bottom-24 text-center">{error?.isError && <span className="text-xs uppercase text-red-500">{error?.message}</span>}</div>
+            <div className="flex items-center justify-center mt-6">
+                <button className="bg-slate-300 font-bold text-slate-950 p-1 pl-6 pr-6 uppercase text-lg rounded-md hover:" onClick={handleLogin}>Login</button>
+            </div>
+        </form>
+
+    </div>
+  )
+}
+
+export default Login
