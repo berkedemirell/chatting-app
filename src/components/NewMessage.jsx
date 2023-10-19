@@ -18,7 +18,9 @@ const NewMessage = () => {
   } = useContext(UserContext);
   const [isDropped, setIsDropped] = useState(false);
   const [newReceiver, setNewReceiver] = useState({});
-
+  const [error, setError] = useState("");
+  const [go, setGo] = useState(false);
+  
   const handleDropDown = () => {
     setIsDropped((prev) => !prev);
   };
@@ -46,9 +48,12 @@ const NewMessage = () => {
     setIsDropped(false);
   };
 
-  const asd = () => {
+  const handleGo = () => {
     if (lütfen) {
+      setGo(true)
       return;
+    } else if (messageReceiver.username === undefined) {
+      setError("You Must Select a Recipient First. Fucking idiot.");
     } else {
       setSelectedMessage({
         from: messageReceiver?.username,
@@ -62,12 +67,15 @@ const NewMessage = () => {
         image: user.image,
         messages: [],
       });
+      setGo(true);
     }
   };
 
-  const asdd = () => {
+  const handleProceed = () => {
     if (lütfen) {
       return;
+    } else if (messageReceiver.username === undefined) {
+      setError("You Must Select a Recipient First. Fucking idiot.");
     } else {
       setUser({
         ...user,
@@ -86,14 +94,22 @@ const NewMessage = () => {
     );
     if (!lütfen) {
       setMessageReceiver(newReceiver);
+      setError("");
     } else {
       setMessageReceiver(receiver[0]);
+      setError("");
     }
   }, [setMessageReceiver, selectedMessage, allUsers, newReceiver, lütfen]);
 
+
   return (
-    <div className="w-screen h-fit flex justify-center font-mono">
-      <div className="bg-slate-300 p-4 mt-16 rounded-lg w-1/2">
+    <div className="w-screen h-fit flex justify-center font-mono relative">
+      {error.length !== 0 && (
+        <div className="absolute left-2 top-2 rounded-md w-52 errorAnimation bg-red-900">
+          <p className="text-slate-50 p-2 font-bold">{error}</p>
+        </div>
+      )}
+      <div className="bg-slate-300 p-4 mt-16 rounded-lg w-1/2 pb-16 relative">
         <div className="flex flex-col">
           <div className="flex flex-row items-center">
             <Link
@@ -109,12 +125,15 @@ const NewMessage = () => {
           <span className="border-b border-slate-500 w-full p-1"></span>
         </div>
         <div className="p-2">
-          <div className="relative">
-            <button onClick={handleDropDown} className="font-bold text-lg mt-2">
-              Select Recipient <span className="text-xl">&darr;</span>
+          <div className="relative text-center">
+            <button
+              onClick={handleDropDown}
+              className="font-bold text-xl mt-2 bg-emerald-900 text-slate-50 pr-4 pl-4 p-1 rounded-md"
+            >
+              Select Recipient <span className="text-2xl">&darr;</span>
             </button>
             {isDropped && (
-              <div className="flex flex-col items-start justify-center absolute bg-slate-900 text-slate-50 p-4 rounded-lg -left-4">
+              <div className="flex flex-col items-start justify-center absolute bg-slate-900 text-slate-50 p-4 rounded-lg left-36">
                 {allUsers.map((us, i) => {
                   return (
                     <Link
@@ -132,10 +151,56 @@ const NewMessage = () => {
               </div>
             )}
           </div>
-          <button onClick={asd}>1.</button>
-          <Link to={`/messages/${Number(selectedMessage?.id)}`} onClick={asdd}>
-            2.
-          </Link>
+          <div className="text-center mt-4">
+            <button
+              onClick={handleGo}
+              className="font-bold text-xl bg-green-900 text-slate-50 p-1 pl-8 pr-8 rounded-md"
+            >
+              Go
+            </button>
+          </div>
+          {go && (
+            <div className="w-80 border border-slate-900 p-2 rounded-md absolute left-44 bottom-12 bg-slate-950">
+              <div className="pl-4 pr-4">
+                {!lütfen ? (
+                  <p className="text-slate-50">
+                    You are about to start a chat with{" "}
+                    <span className="font-bold">
+                      {messageReceiver.username}
+                    </span>
+                    . Do you want to proceed?
+                  </p>
+                ) : (
+                  <p className="text-slate-50">
+                    You have already have a conversation started with{" "}
+                    <span className="font-bold">
+                      {messageReceiver.username}
+                    </span>
+                    . Do You Want To Be Directed?
+                  </p>
+                )}
+              </div>
+              <div className="flex flex-row items-center justify-between pl-20 pr-20 mt-2">
+                <Link
+                  to={
+                    messageReceiver.username === undefined
+                      ? "/create"
+                      : `/messages/${Number(selectedMessage?.id)}`
+                  }
+                  onClick={handleProceed}
+                  className="bg-green-900 text-slate-50 pl-4 pr-4 p-1 rounded-md"
+                >
+                  Yes
+                </Link>
+                <button
+                  onClick={() => setGo(false)}
+                  className="bg-red-900 text-slate-50 pl-4 pr-4 p-1 rounded-md"
+                >
+                  No
+                </button>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>

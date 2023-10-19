@@ -21,6 +21,17 @@
       transform: translateY(0);
     }
   }
+  @keyframes animate2 {
+    from{
+      transform: translateX(-200px);
+    } to {
+      transform: translateX(0);
+    }
+  }
+
+  .errorAnimation {
+    animation: animate2 1s ease-in;
+  }
 
   .asd {
     animation: animate 0.5s ease-in;

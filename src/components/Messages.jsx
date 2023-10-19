@@ -94,7 +94,7 @@ const Messages = () => {
                       id={us.from}
                       className="font-bold text-lg block -mb-2"
                     >
-                      {us.from}
+                      {us.from}{us.from === user.username ? '(you)' : ''}
                     </span>
                     <span id={us.from} className="font-bold opacity-70 block">
                       {us?.messages
@@ -110,7 +110,7 @@ const Messages = () => {
                   {us.messages.filter(mes => mes.isRead === false).length === 0 ? '' : <div className="font-bold ml-auto bg-green-900 text-slate-50 p-1 rounded-full pl-2 pr-2">+{us.messages.filter(mes => mes.isRead === false).length}</div> }
                 </Link>
               );
-            }) : <p className="text-center mt-4 text-xl font-bold">No users found.</p>
+            }) : <p className="text-center mt-4 text-xl font-bold">No user found.</p>
           ) : (
             <div>
               <p className="mt-4 text-center font-mono text-xl text-slate-700">
