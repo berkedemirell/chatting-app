@@ -7,6 +7,7 @@ import Messages from "./components/Messages";
 import ErrorPage from "./components/ErrorPage";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import SingleMessage from "./components/SingleMessage";
+import NewMessage from "./components/NewMessage";
 
 function App() {
   const { user } = useContext(UserContext);
@@ -23,6 +24,10 @@ function App() {
     {
       path:'/messages/:id',
       element: <SingleMessage/>
+    },
+    {
+      path: '/create',
+      element: <NewMessage/>
     }
   ])
 

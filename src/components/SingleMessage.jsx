@@ -12,13 +12,36 @@ const SingleMessage = () => {
     messageReceiver,
     setMessageReceiver,
     setUser,
+    deneme,
+    lütfen,
+    allUsers
   } = useContext(UserContext);
 
   const [divHeight, setDivHeight] = useState(0)
 
+
+  useEffect(() => {
+    if(selectedMessage.messages.length !== 0) {
+      selectedMessage?.messages.map((mes) => mes.isRead = true)
+    } else {
+      return;
+    }
+  }, [selectedMessage])
+
+
+  useEffect(() => {
+    const receiver = allUsers.filter((us) => us.username === selectedMessage?.from)[0]
+    if(lütfen) {
+      setMessageReceiver(receiver)
+    } else {
+      return
+    }
+  },[setMessageReceiver, selectedMessage, allUsers, user, lütfen])
+
+
   const handleMessageChange = (e) => {
     setMessage({
-      id: selectedMessage.messages.length + 1,
+      id: selectedMessage?.messages.length === 0 ? 1 : selectedMessage?.messages.length + 1,
       type: "sent",
       sentFrom: user?.username,
       sentTo: selectedMessage?.from,
@@ -46,6 +69,7 @@ const SingleMessage = () => {
     const height = div?.scrollHeight;
     div?.scrollTo(0, height);
   }, []);
+
   
   const handleSendMessage = useCallback(() => {
     if (message?.message?.length === 0) {
@@ -78,7 +102,7 @@ const SingleMessage = () => {
           ).messages = [
             ...messageReceiver.chatMessages.find(
               (obj) => Number(obj.id) === Number(selectedMessage.id)
-            ).messages, message
+            ).messages, {...message, isRead: false}
           ]),
         ].slice(0, messageReceiver.chatMessages.length),
       });
@@ -87,7 +111,7 @@ const SingleMessage = () => {
 
     }
     setMessage({
-      id: selectedMessage.messages.length + 1,
+      id: '',
       type: "sent",
       sentFrom: "",
       sentTo: "",
@@ -105,7 +129,7 @@ const SingleMessage = () => {
     messageInput,
     messageReceiver,
     setMessageReceiver,
-    divHeight
+    divHeight,
   ]);
 
   useEffect(() => {
@@ -130,11 +154,9 @@ const SingleMessage = () => {
     return () => document.removeEventListener("keypress", asd);
   }, [handleSendMessage]);
 
-
-
   return (
     <div className="w-screen flex justify-center font-mono h-screen">
-      <div className="flex flex-col bg-slate-300 w-1/2 h-3/4 p-4 mt-4 rounded-lg">
+      <div className="flex flex-col bg-slate-300 w-1/2 h-3/4 p-4 mt-16 rounded-lg">
         <div className="border-b border-slate-400 p-2 flex flex-row items-center gap-2">
           <Link to="/messages" className="text-4xl text-slate-800 mr-2">
             <span>&larr;</span>
@@ -142,9 +164,9 @@ const SingleMessage = () => {
           <p className="font-bold text-lg">Chat with {selectedMessage?.from}</p>
         </div>
         <div id="chat-div" className="h-3/4 overflow-scroll">
-          {selectedMessage?.messages?.map((mes, i) => {
+          {(selectedMessage?.messages)?.map((mes, i) => {
             return (
-              <div key={i}>
+              <div key={i} id="messi">
                 <div
                   id={`message-${mes.id}`}
                   className={`flex mt-4 flex-col w-fit relative ${
@@ -161,16 +183,16 @@ const SingleMessage = () => {
                     <img
                       src={
                         mes.sentFrom === user.username
-                          ? `${user.image}`
-                          : `${selectedMessage.image}`
+                          ? `${user?.image}`
+                          : `${selectedMessage?.image.length !== 0 ? selectedMessage?.image : deneme?.image}`
                       }
                       alt=""
                       className="w-6 h-6 rounded-full"
                     />
                   </div>
                   <p className="">{mes.message}</p>
+                <div className="absolute left-1 top-1">{mes.isRead ? '' : <p className="w-2 h-2 rounded-full bg-slate-50"></p>}</div>
                 </div>
-                <div>{mes.isRead ? '' : '+1'}</div>
               </div>
             );
           })}

@@ -1,17 +1,26 @@
+
+
+//https://images2.alphacoders.com/133/thumbbig-1331312.webp
+//https://images7.alphacoders.com/303/thumbbig-303042.webp
+//https://images8.alphacoders.com/133/thumbbig-1331368.webp
+//https://images5.alphacoders.com/613/thumbbig-613927.webp
+//https://images3.alphacoders.com/133/thumbbig-1331008.webpa
+
+
 export const users = [
   {
     id: 1,
     username: "berke",
     password: "123",
     image:
-      "https://images2.alphacoders.com/133/thumbbig-1331312.webp",
+      "",
     isOnline: false,
     chatMessages: [
       {
         from: "tom",
         id: 1,
         image:
-          "https://images7.alphacoders.com/303/thumbbig-303042.webp",
+          "",
         messages: [
           {
             id: 1,
@@ -67,7 +76,7 @@ export const users = [
         from: "bombadil",
         id: 2,
         image:
-          "https://images8.alphacoders.com/133/thumbbig-1331368.webp",
+          "",
         messages: [
           {
             id: 1,
@@ -147,7 +156,7 @@ export const users = [
       {
         from: "somebody that i used to know",
         id: 3,
-        image: "https://images5.alphacoders.com/613/thumbbig-613927.webp",
+        image: "",
         messages: [
           {
             id: 1,
@@ -170,7 +179,7 @@ export const users = [
       {
         from: "oe",
         id: 4,
-        image: "https://images3.alphacoders.com/133/thumbbig-1331008.webp",
+        image: "",
         messages: [
           {
             id: 1,
@@ -241,13 +250,13 @@ export const users = [
     password: "3131",
     isOnline: false,
     image:
-      "https://images7.alphacoders.com/303/thumbbig-303042.webp",
+      "",
     chatMessages: [
       {
         from: "berke",
         id: 1,
         image:
-          "https://images2.alphacoders.com/133/thumbbig-1331312.webp",
+          "",
         messages: [
           {
             id: 1,
@@ -307,13 +316,13 @@ export const users = [
     password: "69",
     isOnline: false,
     image:
-      "https://images8.alphacoders.com/133/thumbbig-1331368.webp",
+      "",
     chatMessages: [
       {
         from: "berke",
         id: 2,
         image:
-          "https://images2.alphacoders.com/133/thumbbig-1331312.webp",
+          "",
         messages: [
           {
             id: 1,
@@ -390,6 +399,21 @@ export const users = [
           },
         ],
       },
+      {
+        from: 'oe',
+        id: 5,
+        image: "",
+        messages: [
+          {
+            id: 1,
+            type: 'sent',
+            sentFrom: 'bombadil',
+            sentTo: 'oe',
+            isRead: true,
+            message:'Napıyon kanks',
+          }
+        ]
+      },
     ],
   },
   {
@@ -398,12 +422,12 @@ export const users = [
     password: "asd",
     isOnline: false,
     image:
-      "https://images5.alphacoders.com/613/thumbbig-613927.webp",
+      "",
     chatMessages: [
         {
             from: "berke",
             id: 3,
-            image: "https://images2.alphacoders.com/133/thumbbig-1331312.webp",
+            image: "",
             messages: [
               {
                 id: 1,
@@ -431,12 +455,12 @@ export const users = [
     password: "12345",
     isOnline: false,
     image:
-      "https://images3.alphacoders.com/133/thumbbig-1331008.webp",
+      "",
     chatMessages: [
         {
             from: "berke",
             id: 4,
-            image: "https://images2.alphacoders.com/133/thumbbig-1331312.webp",
+            image: "",
             messages: [
               {
                 id: 1,
@@ -499,8 +523,41 @@ export const users = [
               },
             ],
           },
+          {
+            from: 'bombadil',
+            id: 5,
+            image: "",
+            messages: [
+              {
+                id: 1,
+                type: 'sent',
+                sentFrom: 'bombadil',
+                sentTo: 'oe',
+                isRead: true,
+                message:'Napıyon kanks',
+              }
+            ]
+          },
     ],
   },
+  {
+    id: 6,
+    username: "kral",
+    password: "111",
+    isOnline: false,
+    image:
+      "",
+    chatMessages: []
+  },
+  {
+    id: 7,
+    username: "test",
+    password: "test",
+    isOnline: false,
+    image:
+      "",
+    chatMessages: []
+  }
 ];
 
 export default users;

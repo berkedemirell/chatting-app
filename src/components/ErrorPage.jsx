@@ -1,9 +1,13 @@
-
+import { Link } from "react-router-dom";
 
 const ErrorPage = () => {
   return (
-    <div>User Not Found</div>
-  )
-}
+    <div className="w-screen h-screen">
+      <div className="mt-24">
+        <p className="text-center text-2xl font-bold text-red-900">User Not Found(404). <Link to='/' className="underline">Please t ry to login again.</Link></p>
+      </div>
+    </div>
+  );
+};
 
-export default ErrorPage
+export default ErrorPage;
