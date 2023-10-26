@@ -21,6 +21,7 @@ export const users = [
         id: 1,
         image:
           "",
+        updatedAt: Date.now(), 
         messages: [
           {
             id: 1,
@@ -77,6 +78,7 @@ export const users = [
         id: 2,
         image:
           "",
+          updatedAt: Date.now(), 
         messages: [
           {
             id: 1,
@@ -157,6 +159,7 @@ export const users = [
         from: "somebody that i used to know",
         id: 3,
         image: "",
+        updatedAt: Date.now(), 
         messages: [
           {
             id: 1,
@@ -180,6 +183,7 @@ export const users = [
         from: "oe",
         id: 4,
         image: "",
+        updatedAt: Date.now(), 
         messages: [
           {
             id: 1,
@@ -257,6 +261,7 @@ export const users = [
         id: 1,
         image:
           "",
+          updatedAt: Date.now(), 
         messages: [
           {
             id: 1,
@@ -323,6 +328,7 @@ export const users = [
         id: 2,
         image:
           "",
+          updatedAt: Date.now(), 
         messages: [
           {
             id: 1,
@@ -403,6 +409,7 @@ export const users = [
         from: 'oe',
         id: 5,
         image: "",
+        updatedAt: Date.now(), 
         messages: [
           {
             id: 1,
@@ -428,6 +435,7 @@ export const users = [
             from: "berke",
             id: 3,
             image: "",
+            updatedAt: Date.now(), 
             messages: [
               {
                 id: 1,
@@ -461,6 +469,7 @@ export const users = [
             from: "berke",
             id: 4,
             image: "",
+            updatedAt: Date.now(), 
             messages: [
               {
                 id: 1,
@@ -527,6 +536,7 @@ export const users = [
             from: 'bombadil',
             id: 5,
             image: "",
+            updatedAt: Date.now(), 
             messages: [
               {
                 id: 1,
@@ -557,7 +567,16 @@ export const users = [
     image:
       "",
     chatMessages: []
-  }
+  },
+  {
+    id: 8,
+    username: "berke31",
+    password: "berke31",
+    isOnline: false,
+    image:
+      "",
+    chatMessages: []
+  },
 ];
 
 export default users;

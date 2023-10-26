@@ -23,7 +23,7 @@ const Login = () => {
     setUserInputs({ ...userInputs, [e.target.id]: e.target.value });
   };
 
-  const selected = allUsers.filter((u) => u.password === userInputs.password);
+  const selected = allUsers.filter((u) => u.username === userInputs.username);
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -49,6 +49,14 @@ const Login = () => {
     setIsUsersDropped((prev) => !prev);
   };
 
+  const handleSelectFromUserList = (e) => {
+    e.preventDefault();
+    setUserInputs({
+      username: e.target.id,
+      password: e.target.className.split(' ')[0]
+    })
+  };
+
   return (
     <div className="w-screen h-screen flex items-center flex-col justify-center font-mono">
       <div className="relative">
@@ -59,11 +67,15 @@ const Login = () => {
           <div className="absolute left-24 bg-indigo-700 w-deneme rounded-md p-1 pl-2 z-10">
             {allUsers.map((obj) => {
               return (
-                <div key={obj.id} className="font-bold text-slate-50">
-                  <span>
-                    {obj.id}. Username: {obj.username} /{" "}
-                  </span>
-                  <span>Password: {obj.password}</span>
+                <div key={obj.id}>
+                  <button 
+                    id={obj.username}
+                    className={`${obj.password} font-bold text-slate-50`}
+                    onClick={handleSelectFromUserList}
+                  >
+                    {obj.id}. Username: {obj.username} / Password:{" "}
+                    {obj.password}
+                  </button>
                 </div>
               );
             })}
@@ -77,6 +89,7 @@ const Login = () => {
             id="username"
             type="text"
             placeholder="username"
+            value={userInputs.username}
             className="bg-slate-300 p-1 rounded-md text-slate-950"
             onChange={handleChange}
             required
@@ -88,6 +101,7 @@ const Login = () => {
             id="password"
             type="password"
             placeholder="password"
+            value={userInputs.password}
             className="bg-slate-300 p-1 rounded-md text-slate-950"
             onChange={handleChange}
             required

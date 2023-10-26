@@ -9,6 +9,7 @@ export default {
     "./src/components/SingleMessage.jsx",
     "./src/components/NewMessage.jsx",
     "./src/components/ErrorPage.jsx",
+    "./src/components/AddFriend.jsx",
   ],
   theme: {
     extend: {

@@ -14,34 +14,49 @@ const SingleMessage = () => {
     setUser,
     deneme,
     lütfen,
-    allUsers
+    allUsers,
+    bişey,
   } = useContext(UserContext);
 
-  const [divHeight, setDivHeight] = useState(0)
-
+  const [divHeight, setDivHeight] = useState(0);
 
   useEffect(() => {
-    if(selectedMessage.messages.length !== 0) {
-      selectedMessage?.messages.map((mes) => mes.isRead = true)
+    if (selectedMessage.messages.length !== 0) {
+      selectedMessage?.messages.map((mes) => (mes.isRead = true));
     } else {
       return;
     }
-  }, [selectedMessage])
-
+  }, [selectedMessage]);
 
   useEffect(() => {
-    const receiver = allUsers.filter((us) => us.username === selectedMessage?.from)[0]
-    if(lütfen) {
-      setMessageReceiver(receiver)
+    const receiver = allUsers.filter(
+      (us) => us.username === selectedMessage?.from
+    )[0];
+    if (lütfen) {
+      setMessageReceiver(receiver);
     } else {
-      return
+      return;
     }
-  },[setMessageReceiver, selectedMessage, allUsers, user, lütfen])
+  }, [setMessageReceiver, selectedMessage, allUsers, user, lütfen]);
 
+  const messageIdArray = [
+    bişey[0]?.chatMessages?.filter((mes) => mes.from === user.username)[0]
+      ?.messages?.length === undefined
+      ? 0
+      : bişey[0]?.chatMessages?.filter((mes) => mes.from === user.username)[0]
+          ?.messages?.length,
+    selectedMessage.messages.length,
+  ];
+
+  console.log(messageIdArray);
+  console.log(selectedMessage);
 
   const handleMessageChange = (e) => {
     setMessage({
-      id: selectedMessage?.messages.length === 0 ? 1 : selectedMessage?.messages.length + 1,
+      id:
+        selectedMessage?.messages.length === 0
+          ? 1
+          : Math.max(...messageIdArray) + 1,
       type: "sent",
       sentFrom: user?.username,
       sentTo: selectedMessage?.from,
@@ -51,30 +66,30 @@ const SingleMessage = () => {
   };
 
   useEffect(() => {
-    const div = document.querySelector('#chat-div')
-    setDivHeight(div?.scrollHeight)
-  },[])
+    const div = document.querySelector("#chat-div");
+    setDivHeight(div?.scrollHeight);
+  }, []);
 
   useEffect(() => {
-    const div = document.querySelector('#chat-div')
-      div.scrollTo(0, divHeight)
-
-  }, [divHeight])
-
+    const div = document.querySelector("#chat-div");
+    div.scrollTo(0, divHeight);
+  }, [divHeight]);
 
   const messageInput = document.querySelector("#message-input");
-  
+
   useEffect(() => {
     const div = document.querySelector("#chat-div");
     const height = div?.scrollHeight;
     div?.scrollTo(0, height);
   }, []);
 
-  
   const handleSendMessage = useCallback(() => {
     if (message?.message?.length === 0) {
       return;
-    } else {
+    } else if (
+      messageReceiver?.chatMessages?.filter((mes) => mes.from === user.username)
+        .length !== 0
+    ) {
       setSelectedMessage({
         ...selectedMessage,
         messages: [...selectedMessage.messages, message],
@@ -102,16 +117,60 @@ const SingleMessage = () => {
           ).messages = [
             ...messageReceiver.chatMessages.find(
               (obj) => Number(obj.id) === Number(selectedMessage.id)
-            ).messages, {...message, isRead: false}
+            ).messages,
+            { ...message, isRead: false },
           ]),
         ].slice(0, messageReceiver.chatMessages.length),
       });
-
-      setDivHeight(divHeight + 1)
-
+      setDivHeight(divHeight + 1);
+    } else {
+      setSelectedMessage({
+        ...selectedMessage,
+        messages: [...selectedMessage.messages, message],
+      });
+      setUser({
+        ...user,
+        chatMessages: [
+          ...user.chatMessages,
+          (user.chatMessages.find(
+            (obj) => Number(obj.id) === Number(selectedMessage.id)
+          ).messages = [
+            ...user.chatMessages.find(
+              (obj) => Number(obj.id) === Number(selectedMessage.id)
+            ).messages,
+            message,
+          ]),
+        ].slice(0, user.chatMessages.length),
+      });
+      messageReceiver.chatMessages = [
+        ...messageReceiver.chatMessages,
+        {
+          from: user.username,
+          id: user?.chatMessages?.filter(
+            (mes) => mes.from === messageReceiver.username
+          )[0].id,
+          image: user.image,
+          messages: [],
+        },
+      ];
+      setMessageReceiver({
+        ...messageReceiver,
+        chatMessages: [
+          ...messageReceiver.chatMessages,
+          (messageReceiver.chatMessages.find(
+            (obj) => Number(obj.id) === Number(selectedMessage.id)
+          ).messages = [
+            ...messageReceiver.chatMessages.find(
+              (obj) => Number(obj.id) === Number(selectedMessage.id)
+            ).messages,
+            { ...message, isRead: false },
+          ]),
+        ].slice(0, messageReceiver.chatMessages.length),
+      });
+      setDivHeight(divHeight + 1);
     }
     setMessage({
-      id: '',
+      id: "",
       type: "sent",
       sentFrom: "",
       sentTo: "",
@@ -140,7 +199,6 @@ const SingleMessage = () => {
     }
   }, [message, messageInput]);
 
-
   useEffect(() => {
     const asd = (e) => {
       if (e.key === "Enter") {
@@ -164,7 +222,7 @@ const SingleMessage = () => {
           <p className="font-bold text-lg">Chat with {selectedMessage?.from}</p>
         </div>
         <div id="chat-div" className="h-3/4 overflow-scroll">
-          {(selectedMessage?.messages)?.map((mes, i) => {
+          {selectedMessage?.messages?.map((mes, i) => {
             return (
               <div key={i} id="messi">
                 <div
@@ -177,21 +235,33 @@ const SingleMessage = () => {
                 >
                   <div
                     className={`absolute ${
-                      mes.sentFrom === user.username ? "left-0 -top-3" : "right-0 -top-3"
+                      mes.sentFrom === user.username
+                        ? "left-0 -top-3"
+                        : "right-0 -top-3"
                     }`}
                   >
                     <img
                       src={
                         mes.sentFrom === user.username
                           ? `${user?.image}`
-                          : `${selectedMessage?.image.length !== 0 ? selectedMessage?.image : deneme?.image}`
+                          : `${
+                              selectedMessage?.image.length !== 0
+                                ? selectedMessage?.image
+                                : deneme?.image
+                            }`
                       }
                       alt=""
                       className="w-6 h-6 rounded-full"
                     />
                   </div>
                   <p className="">{mes.message}</p>
-                <div className="absolute left-1 top-1">{mes.isRead ? '' : <p className="w-2 h-2 rounded-full bg-slate-50"></p>}</div>
+                  <div className="absolute left-1 top-1">
+                    {mes.isRead ? (
+                      ""
+                    ) : (
+                      <p className="w-2 h-2 rounded-full bg-slate-50"></p>
+                    )}
+                  </div>
                 </div>
               </div>
             );

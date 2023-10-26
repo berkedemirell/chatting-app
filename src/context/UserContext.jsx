@@ -11,6 +11,7 @@ export const UserContextProvider = ({ children }) => {
   const [allUsers, setAllUsers] = useState(users)
   const [other, setOther] = useState({})
   const [lütfen, setLütfen] = useState(false)
+  const [bişey, setBişey] = useState({})
 
   const [message, setMessage] = useState({});
 
@@ -18,6 +19,7 @@ export const UserContextProvider = ({ children }) => {
     const selected = user.chatMessages.filter((us) => us.from === e.target.id)[0];
     setSelectedMessage(selected);
     setLütfen(true)
+    setBişey(allUsers.filter((us) => us.username === selected.from))
   };
 
 
@@ -44,7 +46,8 @@ export const UserContextProvider = ({ children }) => {
         other,
         setOther,
         lütfen,
-        setLütfen
+        setLütfen,
+        bişey,
       }}
     >
       {children}

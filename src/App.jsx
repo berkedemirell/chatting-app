@@ -8,6 +8,7 @@ import ErrorPage from "./components/ErrorPage";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import SingleMessage from "./components/SingleMessage";
 import NewMessage from "./components/NewMessage";
+import AddFriend from "./components/AddFriend";
 
 function App() {
   const { user } = useContext(UserContext);
@@ -28,7 +29,11 @@ function App() {
     {
       path: '/create',
       element: <NewMessage/>
-    }
+    },
+    {
+      path: '/add',
+      element: <AddFriend/>
+    },
   ])
 
   return <div className="">

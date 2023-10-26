@@ -176,7 +176,7 @@ const NewMessage = () => {
                     <span className="font-bold">
                       {messageReceiver.username}
                     </span>
-                    . Do You Want To Be Directed?
+                    . Do you want to see the chat?
                   </p>
                 )}
               </div>
