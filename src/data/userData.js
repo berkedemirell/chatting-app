@@ -1,26 +1,19 @@
 
 
-//https://images2.alphacoders.com/133/thumbbig-1331312.webp
-//https://images7.alphacoders.com/303/thumbbig-303042.webp
-//https://images8.alphacoders.com/133/thumbbig-1331368.webp
-//https://images5.alphacoders.com/613/thumbbig-613927.webp
-//https://images3.alphacoders.com/133/thumbbig-1331008.webpa
-
-
 export const users = [
   {
     id: 1,
     username: "berke",
     password: "123",
     image:
-      "",
+      "https://images2.alphacoders.com/133/thumbbig-1331312.webp",
     isOnline: false,
     chatMessages: [
       {
         from: "tom",
         id: 1,
         image:
-          "",
+          "https://images7.alphacoders.com/303/thumbbig-303042.webp",
         updatedAt: Date.now(), 
         messages: [
           {
@@ -77,7 +70,7 @@ export const users = [
         from: "bombadil",
         id: 2,
         image:
-          "",
+          "https://images8.alphacoders.com/133/thumbbig-1331368.webp",
           updatedAt: Date.now(), 
         messages: [
           {
@@ -145,34 +138,26 @@ export const users = [
             isRead: true,
             message: "No, and I haven`t done anything out of the ordinary.",
           },
-          {
-            id: 9,
-            type: "sent",
-            sentFrom: "berke",
-            sentTo: "bombadil",
-            isRead: true,
-            message: "Just die mate.",
-          },
         ],
       },
       {
-        from: "somebody that i used to know",
+        from: "somebody",
         id: 3,
-        image: "",
+        image: "https://images5.alphacoders.com/613/thumbbig-613927.webp",
         updatedAt: Date.now(), 
         messages: [
           {
             id: 1,
             type: "sent",
             sentFrom: "berke",
-            sentTo: "somebody that i used to know",
+            sentTo: "somebody",
             isRead: true,
             message: "I am interested in buying auto insurance.",
           },
           {
             id: 2,
             type: "received",
-            sentFrom: "somebody that i used to know",
+            sentFrom: "somebody",
             sentTo: "berke",
             isRead: true,
             message: "idc.",
@@ -180,15 +165,15 @@ export const users = [
         ],
       },
       {
-        from: "oe",
+        from: "john",
         id: 4,
-        image: "",
+        image: "https://images3.alphacoders.com/133/thumbbig-1331008.webp",
         updatedAt: Date.now(), 
         messages: [
           {
             id: 1,
             type: "received",
-            sentFrom: "oe",
+            sentFrom: "john",
             sentTo: "berke",
             isRead: true,
             message:
@@ -198,14 +183,14 @@ export const users = [
             id: 2,
             type: "sent",
             sentFrom: "berke",
-            sentTo: "oe",
+            sentTo: "john",
             isRead: true,
             message: "Yes. Are you going to be taking a class from him?",
           },
           {
             id: 3,
             type: "received",
-            sentFrom: "oe",
+            sentFrom: "john",
             sentTo: "berke",
             isRead: true,
             message: "Yes, but I have never taken his class before.",
@@ -214,7 +199,7 @@ export const users = [
             id: 4,
             type: "sent",
             sentFrom: "berke",
-            sentTo: "oe",
+            sentTo: "john",
             isRead: true,
             message:
               "He is very interesting and challenging. Is that what you are looking for?",
@@ -222,7 +207,7 @@ export const users = [
           {
             id: 5,
             type: "received",
-            sentFrom: "oe",
+            sentFrom: "john",
             sentTo: "berke",
             isRead: true,
             message: "Yes, that`s what I need.",
@@ -231,7 +216,7 @@ export const users = [
             id: 6,
             type: "sent",
             sentFrom: "berke",
-            sentTo: "oe",
+            sentTo: "john",
             isRead: true,
             message:
               "He is really clear on what you need to learn to get a good grade. Are you willing to study hard?",
@@ -239,7 +224,7 @@ export const users = [
           {
             id: 7,
             type: "received",
-            sentFrom: "oe",
+            sentFrom: "john",
             sentTo: "berke",
             isRead: true,
             message: "Yes, I guess so.",
@@ -251,16 +236,16 @@ export const users = [
   {
     id: 2,
     username: "tom",
-    password: "3131",
+    password: "321",
     isOnline: false,
     image:
-      "",
+      "https://images7.alphacoders.com/303/thumbbig-303042.webp",
     chatMessages: [
       {
         from: "berke",
         id: 1,
         image:
-          "",
+          "https://images2.alphacoders.com/133/thumbbig-1331312.webp",
           updatedAt: Date.now(), 
         messages: [
           {
@@ -318,16 +303,16 @@ export const users = [
   {
     id: 3,
     username: "bombadil",
-    password: "69",
+    password: "112233",
     isOnline: false,
     image:
-      "",
+      "https://images8.alphacoders.com/133/thumbbig-1331368.webp",
     chatMessages: [
       {
         from: "berke",
         id: 2,
         image:
-          "",
+          "https://images2.alphacoders.com/133/thumbbig-1331312.webp",
           updatedAt: Date.now(), 
         messages: [
           {
@@ -395,29 +380,21 @@ export const users = [
             isRead: true,
             message: "No, and I haven`t done anything out of the ordinary.",
           },
-          {
-            id: 9,
-            type: "sent",
-            sentFrom: "berke",
-            sentTo: "bombadil",
-            isRead: true,
-            message: "Just die mate.",
-          },
         ],
       },
       {
-        from: 'oe',
+        from: 'john',
         id: 5,
-        image: "",
+        image: "https://images3.alphacoders.com/133/thumbbig-1331008.webp",
         updatedAt: Date.now(), 
         messages: [
           {
             id: 1,
             type: 'sent',
             sentFrom: 'bombadil',
-            sentTo: 'oe',
+            sentTo: 'john',
             isRead: true,
-            message:'Napıyon kanks',
+            message:'Hello :)',
           }
         ]
       },
@@ -425,30 +402,30 @@ export const users = [
   },
   {
     id: 4,
-    username: "somebody that i used to know",
+    username: "somebody",
     password: "asd",
     isOnline: false,
     image:
-      "",
+      "https://images5.alphacoders.com/613/thumbbig-613927.webp",
     chatMessages: [
         {
             from: "berke",
             id: 3,
-            image: "",
+            image: "https://images2.alphacoders.com/133/thumbbig-1331312.webp",
             updatedAt: Date.now(), 
             messages: [
               {
                 id: 1,
                 type: "sent",
                 sentFrom: "berke",
-                sentTo: "somebody that i used to know",
+                sentTo: "somebody",
                 isRead: true,
                 message: "I am interested in buying auto insurance.",
               },
               {
                 id: 2,
                 type: "received",
-                sentFrom: "somebody that i used to know",
+                sentFrom: "somebody",
                 sentTo: "berke",
                 isRead: true,
                 message: "idc.",
@@ -459,22 +436,22 @@ export const users = [
   },
   {
     id: 5,
-    username: "oe",
+    username: "john",
     password: "12345",
     isOnline: false,
     image:
-      "",
+      "https://images3.alphacoders.com/133/thumbbig-1331008.webpa",
     chatMessages: [
         {
             from: "berke",
             id: 4,
-            image: "",
+            image: "https://images2.alphacoders.com/133/thumbbig-1331312.webp",
             updatedAt: Date.now(), 
             messages: [
               {
                 id: 1,
                 type: "received",
-                sentFrom: "oe",
+                sentFrom: "john",
                 sentTo: "berke",
                 isRead: true,
                 message:
@@ -484,14 +461,14 @@ export const users = [
                 id: 2,
                 type: "sent",
                 sentFrom: "berke",
-                sentTo: "oe",
+                sentTo: "john",
                 isRead: true,
                 message: "Yes. Are you going to be taking a class from him?",
               },
               {
                 id: 3,
                 type: "received",
-                sentFrom: "oe",
+                sentFrom: "john",
                 sentTo: "berke",
                 isRead: true,
                 message: "Yes, but I have never taken his class before.",
@@ -500,7 +477,7 @@ export const users = [
                 id: 4,
                 type: "sent",
                 sentFrom: "berke",
-                sentTo: "oe",
+                sentTo: "john",
                 isRead: true,
                 message:
                   "He is very interesting and challenging. Is that what you are looking for?",
@@ -508,7 +485,7 @@ export const users = [
               {
                 id: 5,
                 type: "received",
-                sentFrom: "oe",
+                sentFrom: "john",
                 sentTo: "berke",
                 isRead: true,
                 message: "Yes, that`s what I need.",
@@ -517,7 +494,7 @@ export const users = [
                 id: 6,
                 type: "sent",
                 sentFrom: "berke",
-                sentTo: "oe",
+                sentTo: "john",
                 isRead: true,
                 message:
                   "He is really clear on what you need to learn to get a good grade. Are you willing to study hard?",
@@ -525,7 +502,7 @@ export const users = [
               {
                 id: 7,
                 type: "received",
-                sentFrom: "oe",
+                sentFrom: "john",
                 sentTo: "berke",
                 isRead: true,
                 message: "Yes, I guess so.",
@@ -535,16 +512,16 @@ export const users = [
           {
             from: 'bombadil',
             id: 5,
-            image: "",
+            image: "https://images8.alphacoders.com/133/thumbbig-1331368.webp",
             updatedAt: Date.now(), 
             messages: [
               {
                 id: 1,
                 type: 'sent',
                 sentFrom: 'bombadil',
-                sentTo: 'oe',
+                sentTo: 'john',
                 isRead: true,
-                message:'Napıyon kanks',
+                message:'Hello :)',
               }
             ]
           },
@@ -552,11 +529,11 @@ export const users = [
   },
   {
     id: 6,
-    username: "kral",
+    username: "king",
     password: "111",
     isOnline: false,
     image:
-      "",
+      "https://images8.alphacoders.com/133/thumbbig-1331860.webp",
     chatMessages: []
   },
   {
@@ -565,16 +542,7 @@ export const users = [
     password: "test",
     isOnline: false,
     image:
-      "",
-    chatMessages: []
-  },
-  {
-    id: 8,
-    username: "berke31",
-    password: "berke31",
-    isOnline: false,
-    image:
-      "",
+      "https://images8.alphacoders.com/632/thumbbig-632051.webp",
     chatMessages: []
   },
 ];

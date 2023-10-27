@@ -10,7 +10,7 @@ const AddFriend = () => {
     id:allUsers.length + 1,
     username: '',
     password: 'default',
-    image: '',
+    image: 'https://images3.alphacoders.com/273/thumbbig-273289.webp',
     isOnline: false,
     chatMessages: []
   })
