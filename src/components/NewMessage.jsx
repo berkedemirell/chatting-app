@@ -75,7 +75,7 @@ const NewMessage = () => {
     if (lütfen) {
       return;
     } else if (messageReceiver.username === undefined) {
-      setError("You Must Select a Recipient First. Fucking idiot.");
+      setError("You Must Select a Recipient First!");
     } else {
       setUser({
         ...user,
