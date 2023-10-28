@@ -440,7 +440,7 @@ export const users = [
     password: "12345",
     isOnline: false,
     image:
-      "https://images3.alphacoders.com/133/thumbbig-1331008.webpa",
+      "https://images3.alphacoders.com/133/thumbbig-1331008.webp",
     chatMessages: [
         {
             from: "berke",

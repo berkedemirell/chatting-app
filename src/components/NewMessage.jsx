@@ -49,11 +49,20 @@ const NewMessage = () => {
   };
 
   const handleGo = () => {
-    if (lütfen) {
+    if((user?.chatMessages.filter((us) => us.from === messageReceiver.username).length === 0 && messageReceiver?.chatMessages?.filter((us) => us.from === user.username).length === 1)) {
+      setSelectedMessage({
+        from: messageReceiver.username,
+        id: messageReceiver?.chatMessages?.filter((us) => us.from === user.username)[0].id,
+        image: messageReceiver?.image,
+        messages: [],
+      })
+      setGo(true)
+    }
+    else if (lütfen) {
       setGo(true)
       return;
     } else if (messageReceiver.username === undefined) {
-      setError("You Must Select a Recipient First. Fucking idiot.");
+      setError("You Must Select a Recipient First!");
     } else {
       setSelectedMessage({
         from: messageReceiver?.username,
@@ -72,11 +81,18 @@ const NewMessage = () => {
   };
 
   const handleProceed = () => {
-    if (lütfen) {
+    if((user?.chatMessages.filter((us) => us.from === messageReceiver.username).length === 0 && messageReceiver?.chatMessages?.filter((us) => us.from === user.username).length === 1)) {
+      setUser({
+        ...user,
+        chatMessages: [...user.chatMessages, selectedMessage]
+      })
+    }
+    else if (lütfen) {
       return;
     } else if (messageReceiver.username === undefined) {
       setError("You Must Select a Recipient First!");
-    } else {
+    }
+     else {
       setUser({
         ...user,
         chatMessages: [...user.chatMessages, selectedMessage],
@@ -87,7 +103,7 @@ const NewMessage = () => {
       });
     }
   };
-
+  
   useEffect(() => {
     const receiver = allUsers.filter(
       (us) => us.username === selectedMessage?.from
@@ -100,6 +116,14 @@ const NewMessage = () => {
       setError("");
     }
   }, [setMessageReceiver, selectedMessage, allUsers, newReceiver, lütfen]);
+
+  // const bb = messageReceiver?.chatMessages?.filter((us) => us.from === user.username).length === 1
+  // const cc = user?.chatMessages?.filter((us) => us.from === messageReceiver.username).length === 1
+
+  // console.log(messageReceiver?.chatMessages?.filter((us) => us.from === user.username).length === 1)
+  // console.log(user?.chatMessages?.filter((us) => us.from === messageReceiver.username).length === 1)
+  // console.log(lütfen)
+
 
 
   return (

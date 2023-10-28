@@ -2,6 +2,17 @@ import { useContext, useEffect, useState } from "react";
 import UserContext from "../context/UserContext";
 import { Link } from "react-router-dom";
 
+
+//{us?.messages
+//?.filter((mes) => mes.id === us.messages.length)[0]
+//?.message.slice(0, 60)}
+//{us?.messages?.filter(
+//(mes) => mes.id === us.messages.length
+//)[0]?.message.length > 50
+//? "..."
+//: ""}
+
+
 const Messages = () => {
   const {
     user,
@@ -56,7 +67,6 @@ const Messages = () => {
         return true
       }
     })}
-
     setUser(newState)
   }
 
@@ -133,14 +143,8 @@ const Messages = () => {
                           id={us.from}
                           className="font-bold opacity-70 block"
                         >
-                          {us?.messages
-                            ?.filter((mes) => mes.id === us.messages.length)[0]
-                            ?.message.slice(0, 60)}
-                          {us?.messages?.filter(
-                            (mes) => mes.id === us.messages.length
-                          )[0]?.message.length > 50
-                            ? "..."
-                            : ""}
+                          {us.messages.length === 0 ? '' : us.messages[us.messages.length - 1].message.slice(0,50)}
+                          {us.messages.length === 0 ? '' : us.messages[us.messages.length - 1].message.length > 50 ? '...' : ''}
                         </span>
                       </div>
                       {us.messages.filter((mes) => mes.isRead === false)

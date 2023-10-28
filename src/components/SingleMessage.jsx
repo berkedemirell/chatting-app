@@ -264,17 +264,17 @@ const SingleMessage = () => {
             );
           })}
         </div>
-        <div>
-          <div className="mt-4">
+        <div className="w-full">
+          <div className="mt-4 w-full">
             <input
               type="text"
               id="message-input"
               placeholder="send a message"
-              className="h-12 p-1 text-lg rounded-l-lg w-3/4"
+              className="h-12 p-1 text-lg rounded-l-lg w-5/6"
               onChange={handleMessageChange}
             />
             <button
-              className="h-12 bg-green-900 text-slate-50 p-2 pl-4 pr-4 rounded-r-lg"
+              className="h-12 w-24 text-xl font-bold bg-green-900 text-slate-50 p-2 pl-4 pr-4 rounded-r-lg"
               onClick={handleSendMessage}
             >
               Send
