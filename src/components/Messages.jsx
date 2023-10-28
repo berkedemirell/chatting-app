@@ -60,9 +60,6 @@ const Messages = () => {
     setUser(newState)
   }
 
-  console.log(searchedUsers)
-
-
   return (
     <div className="w-screen h-fit flex justify-center font-mono messageDivAnimation">
       <div className="flex flex-col bg-slate-300 p-4 mt-16 rounded-lg w-1/2">

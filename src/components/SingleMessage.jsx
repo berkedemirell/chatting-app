@@ -48,9 +48,6 @@ const SingleMessage = () => {
     selectedMessage.messages.length,
   ];
 
-  console.log(messageIdArray);
-  console.log(selectedMessage);
-
   const handleMessageChange = (e) => {
     setMessage({
       id:
