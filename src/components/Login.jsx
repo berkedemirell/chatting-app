@@ -60,11 +60,11 @@ const Login = () => {
   return (
     <div className="w-screen h-screen flex items-center flex-col justify-center font-mono">
       <div className="relative">
-        <button onClick={isDropppped} className="font-bold underline">
+        <button onClick={isDropppped} className="font-bold underline text-slate-100">
           User List
         </button>
         {isUsersDropped && (
-          <div className="absolute left-24 bg-indigo-700 w-deneme rounded-md p-1 pl-2 z-10">
+          <div className="absolute left-24 bg-slate-950 w-deneme rounded-md p-1 pl-2 z-10">
             {allUsers.map((obj) => {
               return (
                 <div key={obj.id}>
@@ -82,7 +82,7 @@ const Login = () => {
           </div>
         )}
       </div>
-      <form className="flex flex-col items-center gap-4 border border-slate-950 p-10 rounded-md bg-slate-950 text-slate-50 relative">
+      <form className="flex flex-col items-center gap-4 p-10 rounded-md bg-slate-950 text-slate-50 relative">
         <div className="flex flex-col">
           <label className="text-xs uppercase pl-1">username:</label>
           <input
