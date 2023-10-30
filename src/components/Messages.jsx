@@ -63,12 +63,13 @@ const Messages = () => {
     <div className="w-screen h-fit flex justify-center font-mono messageDivAnimation">
       <div className="flex flex-col bg-slate-300 p-4 mt-16 rounded-lg w-1/2">
         <div className="border-b border-slate-400 p-2 flex flex-row items-center gap-2 justify-between">
-          <div>
+          <div className="flex flex-col items-center">
             <img
               src={user?.image}
               alt="foto"
               className="w-12 h-12 rounded-full"
             />
+            <p className="font-bold text-lg">{user.username}</p>
           </div>
           <div>
             <input
