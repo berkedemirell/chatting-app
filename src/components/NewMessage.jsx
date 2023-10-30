@@ -53,6 +53,7 @@ const NewMessage = () => {
       setSelectedMessage({
         from: messageReceiver.username,
         id: messageReceiver?.chatMessages?.filter((us) => us.from === user.username)[0].id,
+        updatedAt: Date.now(),
         image: messageReceiver?.image,
         messages: [],
       })
@@ -67,12 +68,14 @@ const NewMessage = () => {
       setSelectedMessage({
         from: messageReceiver?.username,
         id: Number(largestIdOfMessages + 1),
+        updatedAt: Date.now(),
         image: messageReceiver?.image,
         messages: [],
       });
       setOther({
         from: user.username,
         id: Number(largestIdOfMessages + 1),
+        updatedAt: Date.now(),
         image: user.image,
         messages: [],
       });
@@ -116,14 +119,6 @@ const NewMessage = () => {
       setError("");
     }
   }, [setMessageReceiver, selectedMessage, allUsers, newReceiver, lütfen]);
-
-  // const bb = messageReceiver?.chatMessages?.filter((us) => us.from === user.username).length === 1
-  // const cc = user?.chatMessages?.filter((us) => us.from === messageReceiver.username).length === 1
-
-  // console.log(messageReceiver?.chatMessages?.filter((us) => us.from === user.username).length === 1)
-  // console.log(user?.chatMessages?.filter((us) => us.from === messageReceiver.username).length === 1)
-  // console.log(lütfen)
-
 
 
   return (

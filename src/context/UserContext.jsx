@@ -17,7 +17,9 @@ export const UserContextProvider = ({ children }) => {
 
   const handleSelectedMessage = (e) => {
     const selected = user.chatMessages.filter((us) => us.from === e.target.id)[0];
+    const receiver = allUsers.filter((obj) => obj.username === e.target.id)[0]
     setSelectedMessage(selected);
+    setMessageReceiver(receiver)
     setLütfen(true)
     setBişey(allUsers.filter((us) => us.username === selected.from))
   };

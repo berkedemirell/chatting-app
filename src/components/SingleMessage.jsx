@@ -89,6 +89,7 @@ const SingleMessage = () => {
     ) {
       setSelectedMessage({
         ...selectedMessage,
+        updatedAt: Date.now(),
         messages: [...selectedMessage.messages, message],
       });
       setUser({
@@ -123,6 +124,7 @@ const SingleMessage = () => {
     } else {
       setSelectedMessage({
         ...selectedMessage,
+        updatedAt: Date.now(),
         messages: [...selectedMessage.messages, message],
       });
       setUser({
@@ -208,6 +210,19 @@ const SingleMessage = () => {
 
     return () => document.removeEventListener("keypress", asd);
   }, [handleSendMessage]);
+
+  useEffect(() => {
+    user.chatMessages.filter(
+      (obj) => Number(obj.id) === Number(selectedMessage.id)
+    )[0].updatedAt = selectedMessage.updatedAt;
+    if(selectedMessage.updatedAt !== undefined && messageReceiver.chatMessages.filter((obj) => Number(obj.id) === Number(selectedMessage.id)).length !== 0) {
+      messageReceiver.chatMessages.filter(
+        (obj) => Number(obj.id) === Number(selectedMessage.id)
+      )[0].updatedAt = selectedMessage?.updatedAt;
+    } else {
+      return;
+    }
+  }, [user, selectedMessage, messageReceiver]);
 
   return (
     <div className="w-screen flex justify-center font-mono h-screen">

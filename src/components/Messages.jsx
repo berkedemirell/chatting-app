@@ -3,16 +3,6 @@ import UserContext from "../context/UserContext";
 import { Link } from "react-router-dom";
 
 
-//{us?.messages
-//?.filter((mes) => mes.id === us.messages.length)[0]
-//?.message.slice(0, 60)}
-//{us?.messages?.filter(
-//(mes) => mes.id === us.messages.length
-//)[0]?.message.length > 50
-//? "..."
-//: ""}
-
-
 const Messages = () => {
   const {
     user,
@@ -53,10 +43,9 @@ const Messages = () => {
   };
 
   useEffect(() => {
-    const asd = user?.chatMessages.sort((a,b) => Number(b.id) - Number(a.id)).filter((obj) => obj.from.includes(search));
+    const asd = user?.chatMessages.sort((a,b) => Number(b.updatedAt) - Number(a.updatedAt)).filter((obj) => obj.from.includes(search));
     setSearchedUsers(asd);
   }, [user, search]);
-
 
   const handleDelete = (e) => {
     e.preventDefault();
