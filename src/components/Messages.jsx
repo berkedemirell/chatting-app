@@ -2,7 +2,6 @@ import { useContext, useEffect, useState } from "react";
 import UserContext from "../context/UserContext";
 import { Link } from "react-router-dom";
 
-
 const Messages = () => {
   const {
     user,
@@ -14,6 +13,8 @@ const Messages = () => {
   } = useContext(UserContext);
   const [search, setSearch] = useState("");
   const [searchedUsers, setSearchedUsers] = useState([]);
+  const [isMenu, setIsMenu] = useState(false)
+  const [screenWidth, setScreenWidth] = useState(null)
 
   useEffect(() => {
     const updateUser = () => {
@@ -43,55 +44,79 @@ const Messages = () => {
   };
 
   useEffect(() => {
-    const asd = user?.chatMessages.sort((a,b) => Number(b.updatedAt) - Number(a.updatedAt)).filter((obj) => obj.from.includes(search));
+    const asd = user?.chatMessages
+      .sort((a, b) => Number(b.updatedAt) - Number(a.updatedAt))
+      .filter((obj) => obj.from.includes(search));
     setSearchedUsers(asd);
   }, [user, search]);
 
   const handleDelete = (e) => {
     e.preventDefault();
-    const newState = {...user, chatMessages: user.chatMessages.filter((us) => {
-      if(Number(us.id) === Number(e.target.id)) {
-        return false
-      } else {
-        return true
+    const newState = {
+      ...user,
+      chatMessages: user.chatMessages.filter((us) => {
+        if (Number(us.id) === Number(e.target.id)) {
+          return false;
+        } else {
+          return true;
+        }
+      }),
+    };
+    setUser(newState);
+  };
+
+  useEffect(() => {
+    const deneme = () => {
+      if(window.innerWidth > 850) {
+        setScreenWidth(50)
+      } else if(window.innerWidth < 850 && window.innerWidth > 550) {
+        setScreenWidth(30)
+      } else if(window.innerWidth < 550) {
+        setScreenWidth(10)
       }
-    })}
-    setUser(newState)
+
+    }
+    deneme()
   }
+  , [setScreenWidth])
 
   return (
     <div className="w-screen h-fit flex justify-center font-mono messageDivAnimation">
       <div className="flex flex-col bg-slate-300 p-4 mt-16 rounded-lg w-1/2">
-        <div className="border-b border-slate-400 p-2 flex flex-row items-center gap-2 justify-between">
+        <div className="border-b border-slate-400 p-2 sms:p-0 sms:pb-2 flex flex-row items-center gap-2 justify-between">
           <div className="flex flex-col items-center">
             <img
               src={user?.image}
               alt="foto"
-              className="w-12 h-12 rounded-full"
+              className="w-12 h-12 rounded-full mmd:w-8 mmd:h-8 xss:h-6 xss:w-6"
             />
-            <p className="font-bold text-lg">{user.username}</p>
+            <p className="font-bold text-lg mmd:text-md mdx:text-sm xss:text-xs">
+              {user.username}
+            </p>
           </div>
           <div>
             <input
               type="text"
               placeholder="search"
-              className="rounded-md p-1"
+              className="rounded-md p-1 llg:w-36 mmd:text-sm mdx:w-24 sms:w-20 sms:h-6 xss:text-xs"
               onChange={handleChange}
             />
           </div>
-          <div className="flex flex-row items-center gap-4">
-            <Link
-              to="/create"
-              className="p-1 pl-2 pr-2 bg-green-900 text-slate-50 text-md rounded-md font-bold"
-            >
-              New Chat
-            </Link>
-            <Link
-              to="/add"
-              className="p-1 pl-2 pr-2 bg-indigo-900 text-slate-50 text-md rounded-md font-bold"
-            >
-              Add a Friend
-            </Link>
+          <div className="flex flex-row items-center gap-4 llg:gap-2 mmd:gap-4 sms:hidden">
+            <div className="flex flex-row items-center gap-4 llg:gap-1 mmd:flex-col mdx:flex-row sms:flex-col">
+              <Link
+                to="/create"
+                className="p-1 pl-2 pr-2 bg-green-900 text-slate-50 text-md rounded-md font-bold llg:text-sm mmd:text-xs"
+              >
+                {window.innerWidth > 700 ? "New Chat" : "New"}
+              </Link>
+              <Link
+                to="/add"
+                className="p-1 pl-2 pr-2 bg-indigo-900 text-slate-50 text-md rounded-md font-bold llg:text-sm mmd:text-xs"
+              >
+                {window.innerWidth > 700 ? "Add a Friend" : "Add"}
+              </Link>
+            </div>
             <Link
               to="/"
               onClick={handleLogout}
@@ -99,6 +124,32 @@ const Messages = () => {
             >
               X
             </Link>
+          </div>
+          <div className="relative hidden sms:block z-10">
+            <div className="rotate-90 text-slate-950 font-bold font-bold xss:text-sm" onClick={() => setIsMenu((prev) => !prev)}>...</div>
+            {isMenu && <div className="flex w-40 -left-32 top-8 flex-col items-start gap-4 absolute bg-slate-950 p-2 pl-4 pr-4 rounded-md">
+              <div className="flex flex-col items-start gap-4">
+                <Link
+                  to="/create"
+                  className=" font-bold text-slate-50 text-lg"
+                >
+                  New Chat
+                </Link>
+                <Link
+                  to="/add"
+                  className=" font-bold text-slate-50 text-lg"
+                >
+                  Add Friend
+                </Link>
+              </div>
+              <Link
+                to="/"
+                onClick={handleLogout}
+                className="text-lg font-bold text-slate-50"
+              >
+                Exit
+              </Link>
+            </div>}
           </div>
         </div>
         <div>
@@ -111,30 +162,40 @@ const Messages = () => {
                       id={us.from}
                       to={`/messages/${us.id}`}
                       onClick={handleSelectedMessage}
-                      className="flex flex-row items-center w-full justify-start gap-2 mt-2 hover:bg-slate-50 p-2 rounded-md"
+                      className="flex flex-row items-center ssm:pl-0 ssm:pr-0 w-full justify-start gap-2 mt-2 hover:bg-slate-50 p-2 rounded-md"
                     >
                       <div className="">
                         <img
                           id={us?.from}
                           src={us?.image}
                           alt="user"
-                          className="w-12 h-12 rounded-full"
+                          className="w-12 h-12 rounded-full mmd:w-10 mmd:h-10 sms:h-8 sms:w-8 ssm:w-6 ssm:h-6"
                         />
                       </div>
-                      <div className="">
+                      <div className="ssm:flex ssm:flex-col ssm:items-start ssm:justify-start">
                         <span
                           id={us.from}
-                          className="font-bold text-lg block -mb-2"
+                          className="font-bold text-lg block -mb-2 sms:text-md ssm:text-sm"
                         >
                           {us.from}
                           {us.from === user.username ? "(you)" : ""}
                         </span>
                         <span
                           id={us.from}
-                          className="font-bold opacity-70 block"
+                          className="font-bold opacity-70 block llg:text-sm sms:text-xs"
                         >
-                          {us.messages.length === 0 ? '' : us.messages[us.messages.length - 1].message.slice(0,50)}
-                          {us.messages.length === 0 ? '' : us.messages[us.messages.length - 1].message.length > 50 ? '...' : ''}
+                          {us.messages.length === 0
+                            ? ""
+                            : us.messages[us.messages.length - 1].message.slice(
+                                0,
+                                Number(screenWidth)
+                              )}
+                          {us.messages.length === 0
+                            ? ""
+                            : us.messages[us.messages.length - 1].message
+                                .length > 50
+                            ? "..."
+                            : ""}
                         </span>
                       </div>
                       {us.messages.filter((mes) => mes.isRead === false)
@@ -154,7 +215,13 @@ const Messages = () => {
                       )}
                     </Link>
                     <div>
-                      <button id={us.id} className="bg-red-900 text-slate-50 font-bold p-1 pl-3 pr-3 rounded-full" onClick={handleDelete}>🗑</button>
+                      <button
+                        id={us.id}
+                        className="bg-red-900 text-slate-50 font-bold p-1 pl-3 pr-3 rounded-full sms:pl-2 sms:pr-2 sms:text-sm xss:text-xs"
+                        onClick={handleDelete}
+                      >
+                        🗑
+                      </button>
                     </div>
                   </div>
                 );

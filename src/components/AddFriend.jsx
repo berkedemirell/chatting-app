@@ -40,16 +40,16 @@ const AddFriend = () => {
           <Link to="/messages" className="text-5xl text-red-900 ml-1 font-bold">
             &larr;
           </Link>
-          <p className="text-2xl font-bold ml-auto mr-auto text-green-950">
+          <p className="text-2xl font-bold ml-auto mr-auto text-green-950 sms:text-lg">
             Add a New Friend
           </p>
         </div>
         <div className="mt-2">
           <form className="flex flex-col items-center justify-center gap-4">
             <div className="flex flex-col items-start relative">
-              <label className="font-bold">friend`s username:</label>
-              <input type="text" placeholder="username" name="username" className="p-1 rounded-md" onChange={handleChange}/>
-              <div className="absolute -bottom-4">
+              <label className="font-bold xss:text-xs">friend`s username:</label>
+              <input type="text" placeholder="username" name="username" className="p-1 rounded-md xss:w-36" onChange={handleChange}/>
+              <div className="absolute -bottom-4 xss:-left-3">
                 <p className={`text-xs uppercase w-64 font-bold ${error.split(' ').includes('successfully') ? 'text-green-900' : 'text-red-900'}`}>{error}</p>
               </div>
             </div>

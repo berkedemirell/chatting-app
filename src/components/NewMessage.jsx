@@ -137,7 +137,7 @@ const NewMessage = () => {
             >
               &larr;
             </Link>
-            <h1 className="text-2xl font-bold ml-auto mr-auto text-green-950">
+            <h1 className="text-2xl font-bold ml-auto mr-auto text-green-950 sms:text-lg">
               Start a New Chat
             </h1>
           </div>
@@ -147,17 +147,17 @@ const NewMessage = () => {
           <div className="relative text-center">
             <button
               onClick={handleDropDown}
-              className="font-bold text-xl mt-2 bg-emerald-900 text-slate-50 pr-4 pl-4 p-1 rounded-md"
+              className="font-bold text-xl mt-2 bg-emerald-900 text-slate-50 pr-4 pl-4 p-1 rounded-md sms:text-sm"
             >
-              Select Recipient <span className="text-2xl">&darr;</span>
+              Select Recipient <span className="text-2xl sms:text-sm">&darr;</span>
             </button>
             {isDropped && (
-              <div className="flex flex-col items-start justify-center absolute bg-slate-900 text-slate-50 p-4 rounded-lg left-36">
+              <div className="flex flex-col mdx:gap-2 items-start sms:left-8 ssm:left-0 justify-center absolute bg-slate-900 text-slate-50 p-4 mdx:left-16 rounded-lg left-36">
                 {allUsers.map((us, i) => {
                   return (
                     <Link
                       id={us.username}
-                      className="bg-slate-700 mb-1 pl-2 pr-2 rounded-md"
+                      className="w-52 bg-slate-700 mb-1 pl-2 pr-2 rounded-md mdx:text-sm mdx:w-32 text-start"
                       key={us.id}
                       onClick={handleSelect}
                     >
@@ -173,13 +173,13 @@ const NewMessage = () => {
           <div className="text-center mt-4">
             <button
               onClick={handleGo}
-              className="font-bold text-xl bg-green-900 text-slate-50 p-1 pl-8 pr-8 rounded-md"
+              className="font-bold text-xl bg-green-900 text-slate-50 p-1 pl-8 pr-8 rounded-md sms:text-sm"
             >
               Go
             </button>
           </div>
           {go && (
-            <div className="w-80 border border-slate-900 p-2 rounded-md absolute left-44 bottom-12 bg-slate-950">
+            <div className="w-fit border border-slate-900 p-2 rounded-md top-24 left-0 ssm:-left-8 xss:-left-12 absolute bg-slate-950">
               <div className="pl-4 pr-4">
                 {!lütfen ? (
                   <p className="text-slate-50">
@@ -199,7 +199,7 @@ const NewMessage = () => {
                   </p>
                 )}
               </div>
-              <div className="flex flex-row items-center justify-between pl-20 pr-20 mt-2">
+              <div className="flex flex-row items-center justify-evenly pl-20 pr-20 mt-2">
                 <Link
                   to={
                     messageReceiver.username === undefined

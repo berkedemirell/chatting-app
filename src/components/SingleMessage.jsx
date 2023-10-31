@@ -215,7 +215,12 @@ const SingleMessage = () => {
     user.chatMessages.filter(
       (obj) => Number(obj.id) === Number(selectedMessage.id)
     )[0].updatedAt = selectedMessage.updatedAt;
-    if(selectedMessage.updatedAt !== undefined && messageReceiver.chatMessages.filter((obj) => Number(obj.id) === Number(selectedMessage.id)).length !== 0) {
+    if (
+      selectedMessage.updatedAt !== undefined &&
+      messageReceiver.chatMessages.filter(
+        (obj) => Number(obj.id) === Number(selectedMessage.id)
+      ).length !== 0
+    ) {
       messageReceiver.chatMessages.filter(
         (obj) => Number(obj.id) === Number(selectedMessage.id)
       )[0].updatedAt = selectedMessage?.updatedAt;
@@ -231,7 +236,9 @@ const SingleMessage = () => {
           <Link to="/messages" className="text-4xl text-slate-800 mr-2">
             <span>&larr;</span>
           </Link>
-          <p className="font-bold text-lg">Chat with {selectedMessage?.from}</p>
+          <p className="font-bold text-lg sms:text-sm">
+            Chat with {selectedMessage?.from}
+          </p>
         </div>
         <div id="chat-div" className="h-3/4 overflow-scroll">
           {selectedMessage?.messages?.map((mes, i) => {
@@ -248,8 +255,8 @@ const SingleMessage = () => {
                   <div
                     className={`absolute ${
                       mes.sentFrom === user.username
-                        ? "left-0 -top-3"
-                        : "right-0 -top-3"
+                        ? "left-0 -top-3 xss:-top-1"
+                        : "right-0 -top-3 xss:-top-1"
                     }`}
                   >
                     <img
@@ -263,10 +270,10 @@ const SingleMessage = () => {
                             }`
                       }
                       alt=""
-                      className="w-6 h-6 rounded-full"
+                      className="w-6 h-6 rounded-full xss:w-4 xss:h-4"
                     />
                   </div>
-                  <p className="">{mes.message}</p>
+                  <p className="mmd:text-sm sms:text-xs">{mes.message}</p>
                   <div className="absolute left-1 top-1">
                     {mes.isRead ? (
                       ""
@@ -279,17 +286,17 @@ const SingleMessage = () => {
             );
           })}
         </div>
-        <div className="w-full">
-          <div className="mt-4 w-full">
+        <div className="">
+          <div className="mt-4">
             <input
               type="text"
               id="message-input"
               placeholder="send a message"
-              className="h-12 p-1 text-lg rounded-l-lg w-5/6"
+              className="h-12 p-1 text-lg rounded-l-lg mmd:h-10 w-5/6 llg:w-3/4 mmd:w-2/3 sms:text-md ssm:text-sm ssm:h-8 ssm:pb-0 xss:h-6 xss:text-xs xss:p-0 xss:pl-1"
               onChange={handleMessageChange}
             />
             <button
-              className="h-12 w-24 text-xl font-bold bg-green-900 text-slate-50 p-2 pl-4 pr-4 rounded-r-lg"
+              className="h-12 w-24 mmd:w-20 text-xl font-bold bg-green-900 mmd:h-10 ssm:h-8 text-slate-50 sms:text-lg p-2 pl-4 pr-4 rounded-r-lg mmd:p-1 mmd:pl-2 mmd:pr-2 sms:pl-1 sms:pr-1 sms:w-16 ssm:p-0 ssm:w-14 xss:w-10 xss:h-6 xss:text-xs"
               onClick={handleSendMessage}
             >
               Send

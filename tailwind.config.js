@@ -14,6 +14,14 @@ export default {
   theme: {
     extend: {
       width: { deneme: "35rem" },
+      screens: {
+        'llg': {'max': '1100px'},
+        'mmd': {'max': '850px'},
+        'mdx': {'max': '700px'},
+        'sms': {'max': '560px'},
+        'ssm': {'max': '460px'},
+        'xss': {'max': '400px'},
+      }
     },
   },
   plugins: [],
