@@ -64,13 +64,13 @@ const Login = () => {
           User List
         </button>
         {isUsersDropped && (
-          <div className="absolute left-24 bg-slate-950 w-deneme rounded-md p-1 pl-2 z-10">
+          <div className="absolute flex flex-col items-start gap-2 justify-start left-24 bg-slate-950 w-deneme mmd:w-fit rounded-md p-1 pl-2 z-10 mmd:-left-24">
             {allUsers.map((obj) => {
               return (
-                <div key={obj.id}>
+                <div key={obj.id} className="mmd:w-fit">
                   <button 
                     id={obj.username}
-                    className={`${obj.password} font-bold text-slate-50`}
+                    className={`${obj.password} font-bold text-slate-950 p-1 mmd:text-xs text-start bg-slate-50 rounded-md`}
                     onClick={handleSelectFromUserList}
                   >
                     {obj.id}. Username: {obj.username} / Password:{" "}
