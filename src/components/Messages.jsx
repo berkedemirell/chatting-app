@@ -203,7 +203,7 @@ const Messages = () => {
                         ""
                       ) : (
                         <div
-                          className="font-bold ml-auto bg-green-900 text-slate-50 p-1 rounded-full pl-2 pr-2 mr-4"
+                          className="font-bold ml-auto bg-green-900 text-slate-50 p-1 rounded-full pl-2 pr-2 mr-4 mdx:text-xs mdx:pl-1 mdx:pr-1"
                           id={us.from}
                         >
                           +
