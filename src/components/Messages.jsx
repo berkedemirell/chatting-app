@@ -172,7 +172,7 @@ const Messages = () => {
                           className="w-12 h-12 rounded-full mmd:w-10 mmd:h-10 sms:h-8 sms:w-8 ssm:w-6 ssm:h-6"
                         />
                       </div>
-                      <div className="ssm:flex ssm:flex-col ssm:items-start ssm:justify-start">
+                      <div className="ssm:flex ssm:flex-col ssm:items-start ssm:gap-1 ssm:justify-start">
                         <span
                           id={us.from}
                           className="font-bold text-lg block -mb-2 sms:text-md ssm:text-sm"
