@@ -54,7 +54,8 @@ const Login = () => {
     setUserInputs({
       username: e.target.id,
       password: e.target.className.split(' ')[0]
-    })
+    });
+    setIsUsersDropped(false)
   };
 
   return (

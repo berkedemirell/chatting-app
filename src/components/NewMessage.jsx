@@ -151,6 +151,7 @@ const NewMessage = () => {
             >
               Select Recipient <span className="text-2xl sms:text-sm">&darr;</span>
             </button>
+            <div className="mt-2"><span className="text-lg">Recipient: <span className="font-bold">{messageReceiver.username}</span></span></div>
             {isDropped && (
               <div className="flex flex-col mdx:gap-2 items-start sms:left-8 ssm:left-0 justify-center absolute bg-slate-900 text-slate-50 p-4 mdx:left-16 rounded-lg left-36">
                 {allUsers.map((us, i) => {
